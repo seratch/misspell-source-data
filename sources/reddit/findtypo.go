@@ -433,6 +433,7 @@ var badWord = map[string]bool{
 }
 
 var badTypo = map[string]bool{
+	"convertors":       true, // real word
 	"functionallity":   true, // get correcteds to wrong word
 	"implementational": true, // real word
 	"perceptron":       true, // real word
