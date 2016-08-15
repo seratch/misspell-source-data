@@ -37,6 +37,7 @@ func dictWikipedia() map[string]string {
 	dict["fiels"] = "fields"
 
 	needDelete := []string{
+		"grat", // was "great", but could be "grate" or short for "gratification" (e.g. instant grat)
 		"thru", // informal style of "through"
 		"publically",
 		"upto",   // ruby method name, do not correct to 'up to'
