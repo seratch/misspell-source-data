@@ -14,6 +14,8 @@ import (
 )
 
 var badWord = map[string]bool{
+	"parallelise":   true,
+	"parallelize":   true,
 	"occured":       true, // misspelling
 	"klingon":       true,
 	"grammer":       true, // misspelling
