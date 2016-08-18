@@ -14,6 +14,7 @@ import (
 )
 
 var badWord = map[string]bool{
+	"replicaset":    true,
 	"parallelise":   true,
 	"parallelize":   true,
 	"occured":       true, // misspelling
