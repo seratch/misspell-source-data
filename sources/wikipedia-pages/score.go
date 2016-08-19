@@ -36,7 +36,7 @@ func (s counts) Less(i, j int) bool {
 }
 
 // LoadCSV loads in a CSV in form of WORD,COUNT
-func loadCSV(fname string) (counts, error) {
+func loadCSV(fname string, ignore map[string]bool) (counts, error) {
 	fi, err := os.Open(fname)
 	if err != nil {
 		return nil, err
@@ -51,14 +51,24 @@ func loadCSV(fname string) (counts, error) {
 	scanner := bufio.NewScanner(fizip)
 	for scanner.Scan() {
 		line := scanner.Text()
+
+		// split into 2 fields
 		parts := strings.SplitN(line, ",", 2)
 		if len(parts) != 2 {
 			return nil, fmt.Errorf("Got extra junk in line: %q", line)
 		}
+
+		// ignore words like brand names, etc
+		if ignore[parts[0]] {
+			continue
+		}
+
+		// convert arg 1 to number
 		c, err := strconv.Atoi(parts[1])
 		if err != nil {
 			return nil, fmt.Errorf("Number conversion failed: %q", line)
 		}
+
 		words = append(words, pair{parts[0], c})
 	}
 	if err := scanner.Err(); err != nil {
@@ -76,16 +86,9 @@ func LoadWordList(fname string) (map[string]bool, error) {
 	}
 	defer fi.Close()
 	out := make(map[string]bool)
-	intro := true
 	scanner := bufio.NewScanner(fi)
 	for scanner.Scan() {
 		line := scanner.Text()
-		if intro {
-			if line == "---" {
-				intro = false
-			}
-			continue
-		}
 		out[strings.ToLower(line)] = true
 	}
 	if err := scanner.Err(); err != nil {
@@ -95,10 +98,11 @@ func LoadWordList(fname string) (map[string]bool, error) {
 }
 
 func main() {
-	dictfile := flag.String("d", "dict.txt", "aspell wordlist")
+	dictFile := flag.String("d", "dict.txt", "list of known-good words")
+	ignoresFile := flag.String("ignore", "words-ignore.txt", "word list to ignore")
 
 	// not compressing output file since this is a single go-routine
-	// and two lazy to fire off a separate routine to compress...
+	// and too lazy to fire off a separate routine to compress...
 	// i.e. it's not parallelized and gzip will just slow things down
 	// Output is only like 2M anyways.
 	outfile := flag.String("o", "RC-score.csv", "outfile")
@@ -108,14 +112,20 @@ func main() {
 	flag.Parse()
 
 	// load known-good words`
-	truewords, err := LoadWordList(*dictfile)
+	truewords, err := LoadWordList(*dictFile)
 	if err != nil {
-		log.Fatalf("Unable to read wordlist")
+		log.Fatalf("Unable to read wordlist %q: %s", *dictFile, err)
 	}
 	log.Printf("Got %d real words from dictionary", len(truewords))
 
+	ignores, err := LoadWordList(*ignoresFile)
+	if err != nil {
+		log.Fatalf("Unable to read ignore file %q: %s", *ignoresFile, err)
+	}
+	log.Printf("Got %d words to ignore", len(ignores))
+
 	// load frequency counts
-	words, err := loadCSV(*infile)
+	words, err := loadCSV(*infile, ignores)
 	if err != nil {
 		log.Fatalf("Unable to freq counts: %s", err)
 	}
