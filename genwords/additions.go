@@ -8,6 +8,7 @@ func dictAdditions() map[string]string {
 
 // arent
 var additions = `
+disentry->dysentry
 functionallity->functionality
 hexidecimal->hexadecimal
 terrabyte->terabyte
