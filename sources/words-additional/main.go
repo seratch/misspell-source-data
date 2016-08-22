@@ -13,6 +13,8 @@ import (
 )
 
 var words = []string{
+	"requesters",
+	"requestors", // alternate spelling
 	"parallelise",
 	"parallelize",
 	"hammers",
