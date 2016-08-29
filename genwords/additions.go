@@ -8,6 +8,7 @@ func dictAdditions() map[string]string {
 
 // arent
 var additions = `
+recursivly->recursively
 disentry->dysentry
 functionallity->functionality
 hexidecimal->hexadecimal
