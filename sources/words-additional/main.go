@@ -13,6 +13,7 @@ import (
 )
 
 var words = []string{
+	"updaters",
 	"templatize", // https://en.wiktionary.org/wiki/templatize
 	"requesters",
 	"requestors", // alternate spelling
