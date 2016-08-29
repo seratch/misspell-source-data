@@ -13,6 +13,7 @@ import (
 )
 
 var words = []string{
+	"templatize", // https://en.wiktionary.org/wiki/templatize
 	"requesters",
 	"requestors", // alternate spelling
 	"parallelise",
