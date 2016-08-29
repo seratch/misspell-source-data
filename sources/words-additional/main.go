@@ -13,6 +13,7 @@ import (
 )
 
 var words = []string{
+	"unprojected", // https://en.wiktionary.org/wiki/unprojected
 	"updaters",
 	"templatize", // https://en.wiktionary.org/wiki/templatize
 	"requesters",
