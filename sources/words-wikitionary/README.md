@@ -67,8 +67,9 @@ WHERE cl_from IN (
 SELECT cl_from FROM (
   SELECT DISTINCT(cl_from) from categorylinks
   WHERE (cl_to = "English_archaic_forms")
-  OR (cl_to = "English_abbreviations")
-  OR (cl_to LIKE "English_obsolete%")
+     OR (cl_to = "English_abbreviations")
+     OR (cl_to = "English_misspellings")
+     OR (cl_to LIKE "English_obsolete%")
 ) x );
 ```
 
