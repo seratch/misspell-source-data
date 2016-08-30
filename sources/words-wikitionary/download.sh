@@ -12,15 +12,18 @@ set -ex
 # one of a thousand "English_XXX" categories, with suppliments
 # in the "en:XXX" category.
 #
-# Expanded this is about 2G
+# Expanded this mostly a 2G, on one line, INSERT statement :-(
+#
+
 DATE=20160820
 TARGET=enwiktionary-${DATE}-categorylinks.sql.gz
 MYSQLUSER="-u root"
+DBNAME="words"
 
 if [ ! -f ${TARGET} ] ; then
    curl -L -o ${TARGET} \
 	https://archive.org/download/enwiktionary-${DATE}/${TARGET}
 fi
 
-echo "DROP DATABASE IF EXISTS words; CREATE DATABASE words" | mysql ${MYSQLUSER}
-gzcat ${TARGET} | mysql ${MYSQLUSER} words
+echo "DROP DATABASE IF EXISTS ${DBNAME}; CREATE DATABASE ${DBNAME}" | mysql ${MYSQLUSER}
+zcat ${TARGET} | mysql ${MYSQLUSER} ${DBNAME} 
