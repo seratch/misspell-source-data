@@ -22,5 +22,5 @@ if [ ! -f ${TARGET} ] ; then
 	https://archive.org/download/enwiktionary-${DATE}/${TARGET}
 fi
 
-echo "DROP IF EXISTS DATABASE words; CREATE DATABASE WORDS" | mysql ${MYSQLUSER}
+echo "DROP DATABASE IF EXISTS words; CREATE DATABASE words" | mysql ${MYSQLUSER}
 gzcat ${TARGET} | mysql ${MYSQLUSER} words
