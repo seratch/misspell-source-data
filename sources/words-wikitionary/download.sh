@@ -15,10 +15,12 @@ set -ex
 # Expanded this is about 2G
 DATE=20160820
 TARGET=enwiktionary-${DATE}-categorylinks.sql.gz
+MYSQLUSER="-u root"
+
 if [ ! -f ${TARGET} ] ; then
    curl -L -o ${TARGET} \
 	https://archive.org/download/enwiktionary-${DATE}/${TARGET}
 fi
 
-echo "DROP IF EXISTS DATABASE words; CREATE DATABASE WORDS" | mysql
-gzcat ${TARGET} | mysql words
+echo "DROP IF EXISTS DATABASE words; CREATE DATABASE WORDS" | mysql ${MYSQLUSER}
+gzcat ${TARGET} | mysql ${MYSQLUSER} words
