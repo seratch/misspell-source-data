@@ -2,7 +2,7 @@ package main
 
 import (
 	"bufio"
-	"flags"
+	"flag"
 	"log"
 	"net/http"
 	"os"
@@ -28,7 +28,7 @@ var knownBad = map[string]bool{
 
 func main() {
 	outfile := flag.String("out", "words.txt", "outfile name")
-	flags.Parse()
+	flag.Parse()
 
 	// unique word list
 	uniques := make(map[string]bool)
