@@ -21584,7 +21584,6 @@ subscrie->subscriber
 subscriped->subscribed
 subscriping->subscribing
 subscriptin->subscriptions
-subscripting->subscription
 subscripton->subscription
 subscriptons->subscriptions
 subscritpion->subscriptions
