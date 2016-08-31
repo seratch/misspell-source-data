@@ -9,7 +9,8 @@ func dictAdditions() map[string]string {
 // arent
 var additions = `
 recursivly->recursively
-disentry->dysentry
+disentry->dysentery
+dysentry->dysentery
 functionallity->functionality
 hexidecimal->hexadecimal
 terrabyte->terabyte
