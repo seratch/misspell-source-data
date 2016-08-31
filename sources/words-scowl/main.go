@@ -2,9 +2,10 @@ package main
 
 import (
 	"bufio"
-	"fmt"
+	"flag"
 	"log"
 	"net/http"
+	"os"
 	"sort"
 	"strings"
 )
@@ -29,6 +30,12 @@ func loadWordList(target string) map[string]bool {
 			}
 			continue
 		}
+
+		// we dont use contractions
+		if strings.Contains(line, "'") {
+			continue
+		}
+
 		out[strings.ToLower(line)] = true
 	}
 	if err := scanner.Err(); err != nil {
@@ -38,6 +45,9 @@ func loadWordList(target string) map[string]bool {
 }
 
 func main() {
+	outfile := flag.String("out", "words.txt", "Name of output file")
+	flag.Parse()
+
 	wordmap := loadWordList(scowlUS60)
 	// do any fixups here
 
@@ -48,7 +58,16 @@ func main() {
 	log.Printf("Got %d words", len(words))
 
 	sort.Strings(words)
-	for _, word := range words {
-		fmt.Println(word)
+
+	fo, err := os.Create(*outfile)
+	if err != nil {
+		log.Fatalf("unable to create %s: %s", *outfile, err)
 	}
+
+	buf := bufio.NewWriter(fo)
+	for _, word := range words {
+		buf.WriteString(word + "\n")
+	}
+	buf.Flush()
+	fo.Close()
 }
