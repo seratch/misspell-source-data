@@ -1,1 +1,1 @@
-SELECT DISTINCT(word) FROM enwords;
+SELECT DISTINCT(LOWER(word)) FROM enwords;
