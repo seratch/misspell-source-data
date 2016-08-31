@@ -80,12 +80,6 @@ func LoadWordList(fname string) (map[string]bool, error) {
 	scanner := bufio.NewScanner(fi)
 	for scanner.Scan() {
 		line := scanner.Text()
-		if intro {
-			if line == "---" {
-				intro = false
-			}
-			continue
-		}
 		out[strings.ToLower(line)] = true
 	}
 	if err := scanner.Err(); err != nil {
