@@ -17,7 +17,8 @@ import (
 )
 
 var words = []string{
-	"unprojected", // https://en.wiktionary.org/wiki/unprojected
+	"subscripting", // https://github.com/client9/misspell-source-data/issues/6
+	"unprojected",  // https://en.wiktionary.org/wiki/unprojected
 	"updaters",
 	"templatize", // https://en.wiktionary.org/wiki/templatize
 	"requesters",
