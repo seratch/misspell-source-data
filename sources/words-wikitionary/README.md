@@ -47,32 +47,6 @@ which is a 1 line, 2 gigabyte `INSERT` statement.  :-(
 The [download.sh](sources/words-wikitionary/download.sh) script will
 attempt to download a dump and insert it into mysql.
 
-
-### SQL Joy
-
-Removing a tag (word will remain if it has other tags)
-
-```sql
-DELETE FROM categorylinks WHERE cl_to = "English_terms_with_obsolete_senses";
-```
-
-Delete word completely if it has a tag.  MySQL doesn't allow 
-a `DELETE` and `SELECT` on the same table, so you have to [this
-hackery](http://stackoverflow.com/questions/4471277/mysql-delete-from-with-subquery-as-condition): 
-
-```sql
-DELETE tmp.* 
-FROM categorylinks tmp
-WHERE cl_from IN (
-SELECT cl_from FROM (
-  SELECT DISTINCT(cl_from) from categorylinks
-  WHERE (cl_to = "English_archaic_forms")
-     OR (cl_to = "English_abbreviations")
-     OR (cl_to = "English_misspellings")
-     OR (cl_to LIKE "English_obsolete%")
-) x );
-```
-
 ### Amazon Linux
 
 Using [AWS Linux](https://aws.amazon.com/amazon-linux-ami/faqs/)  since it's easy and throwaway.
@@ -86,3 +60,10 @@ sudo /etc/init.d/mysqld start
 The root user is used and passwords are not set since this is never exposed to the
 Internet.
 
+### Scripts
+
+* download.sh  -- download and imports data into mysql
+* dropindex.sh -- drops the crazy indexes that aren't needed
+* enwords.sh -- copies English words into a more-sane table format
+* clean.sh -- removed bogus English words
+* query.sh -- emits a word file, sorted.
