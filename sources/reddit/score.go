@@ -76,7 +76,6 @@ func LoadWordList(fname string) (map[string]bool, error) {
 	}
 	defer fi.Close()
 	out := make(map[string]bool)
-	intro := true
 	scanner := bufio.NewScanner(fi)
 	for scanner.Scan() {
 		line := scanner.Text()
