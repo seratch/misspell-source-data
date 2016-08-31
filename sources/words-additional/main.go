@@ -8,7 +8,11 @@ package main
 //
 
 import (
+	"bufio"
+	"flag"
 	"fmt"
+	"log"
+	"os"
 	"sort"
 )
 
@@ -63,8 +67,21 @@ var words = []string{
 }
 
 func main() {
+	outfile := flag.String("out", "words.txt", "Name of output file")
+	flag.Parse()
 	sort.Strings(words)
 	for _, word := range words {
 		fmt.Println(word)
 	}
+	fo, err := os.Create(*outfile)
+	if err != nil {
+		log.Fatalf("unable to create %s: %s", *outfile, err)
+	}
+
+	buf := bufio.NewWriter(fo)
+	for _, word := range words {
+		buf.WriteString(word + "\n")
+	}
+	buf.Flush()
+	fo.Close()
 }
