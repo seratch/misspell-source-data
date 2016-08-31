@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flags"
 	"log"
 	"net/http"
 	"os"
@@ -26,6 +27,9 @@ var knownBad = map[string]bool{
 }
 
 func main() {
+	outfile := flag.String("out", "words.txt", "outfile name")
+	flags.Parse()
+
 	// unique word list
 	uniques := make(map[string]bool)
 
@@ -62,7 +66,7 @@ func main() {
 	}
 	sort.Strings(keys)
 
-	fo, err := os.Create("words-foldoc.txt")
+	fo, err := os.Create(*outfile)
 	if err != nil {
 		log.Fatalf("Unable to create output: %s", err)
 	}
@@ -70,5 +74,5 @@ func main() {
 		fo.Write([]byte(k + "\n"))
 	}
 	fo.Close()
-	log.Printf("Wrote %s", "words-foldoc.txt")
+	log.Printf("Wrote %s", *outfile)
 }
