@@ -103,8 +103,8 @@ func main() {
 	mergeDict(dict, dictAdditions())
 	mergeDict(dict, dictReddit())
 	log.Printf("With Reddit: %d", len(dict))
-	mergeDict(dict, dictWikipediaArticles())
-	log.Printf("With Wikipedia Articles: %d", len(dict))
+	//mergeDict(dict, dictWikipediaArticles())
+	//log.Printf("With Wikipedia Articles: %d", len(dict))
 
 	words := make([]string, 0, len(dict))
 	for k := range dict {
