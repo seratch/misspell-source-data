@@ -1703,8 +1703,6 @@ theorise->theorize
 theorised->theorized
 theorises->theorizes
 theorising->theorizing
-tonne->ton
-tonnes->tons
 towelled->toweled
 towelling->toweling
 toxaemia->toxemia
