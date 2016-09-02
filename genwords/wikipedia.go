@@ -1,5 +1,9 @@
 package main
 
+import (
+	"strings"
+)
+
 func dictWikipedia() map[string]string {
 	dict := parseWikipediaFormat(wikipedia)
 	// Just wrong
@@ -36,7 +40,7 @@ func dictWikipedia() map[string]string {
 	delete(dict, "Sionist")
 	delete(dict, "Sionists")
 	delete(dict, "Foundland")
-
+	delete(dict, "holliday") // surname
 	// Corrections
 	delete(dict, "fiel")
 	dict["fiels"] = "fields"
@@ -117,6 +121,20 @@ func dictWikipedia() map[string]string {
 
 	for _, word := range needDelete {
 		delete(dict, word)
+	}
+
+	// delete any contractions
+	for wrong, right := range dict {
+		if strings.Contains(right, "'") {
+			delete(dict, wrong)
+		}
+	}
+
+	// delete any multi word corrections
+	for wrong, right := range dict {
+		if strings.Contains(right, " ") {
+			delete(dict, wrong)
+		}
 	}
 
 	dict = expandCase(dict)

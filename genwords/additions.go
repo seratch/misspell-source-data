@@ -223,7 +223,6 @@ muliple->multiple
 mulitple->multiple
 nubmers->numbers
 officiallly->officially
-otherhand->other hand
 optinally->optimally
 ouput->output
 outputed->outputted
