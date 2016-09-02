@@ -19,6 +19,7 @@ func dictWikipedia() map[string]string {
 	delete(dict, "diaster")
 	delete(dict, "Muhammadan")
 	delete(dict, "slippy")
+	delete(dict, "specif") // abbreviation
 
 	// not worthwhile
 	// https://github.com/client9/misspell/issues/25
