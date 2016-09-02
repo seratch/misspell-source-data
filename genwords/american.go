@@ -1579,7 +1579,6 @@ solemnise->solemnize
 solemnised->solemnized
 solemnises->solemnizes
 solemnising->solemnizing
-sombre->somber
 specialisation->specialization
 specialisations->specializations
 specialise->specialize
