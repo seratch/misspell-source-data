@@ -125,7 +125,7 @@ func dictWikipedia() map[string]string {
 
 	// delete any contractions
 	for wrong, right := range dict {
-		if strings.Contains(right, "'") {
+		if strings.Contains(wrong, "'") || strings.Contains(right, "'") {
 			delete(dict, wrong)
 		}
 	}
