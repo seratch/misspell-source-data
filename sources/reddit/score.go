@@ -161,6 +161,10 @@ func main() {
 
 			bword := b.word
 
+			if truewords[bword] {
+				continue
+			}
+
 			// handle "foobar"/"foobars"
 			if strings.HasPrefix(aword, bword) || strings.HasPrefix(bword, aword) {
 				continue
