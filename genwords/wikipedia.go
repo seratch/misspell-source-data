@@ -19,8 +19,12 @@ func dictWikipedia() map[string]string {
 	delete(dict, "diaster")
 	delete(dict, "Muhammadan")
 	delete(dict, "slippy")
-	delete(dict, "specif") // abbreviation
-
+	delete(dict, "specif")     // abbreviation
+	delete(dict, "florescent") // a word: https://en.wiktionary.org/wiki/florescent
+	delete(dict, "planed")     // word: https://en.wiktionary.org/wiki/planed
+	delete(dict, "quitted")    // acceptable UK spelling
+	delete(dict, "heros")      // acceptable spelling
+	delete(dict, "forbad")
 	// not worthwhile
 	// https://github.com/client9/misspell/issues/25
 	delete(dict, "rference")

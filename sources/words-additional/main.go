@@ -17,6 +17,11 @@ import (
 )
 
 var words = []string{
+	"instal",       // acceptable UK spelling?
+	"instals",      // acceptable UK spelling?
+	"internes",     // not in wikitionary 2016-09-01, but in apple dictionary
+	"automatise",   // not in wiktionary 2016-09-01, but automatised is
+	"monopoliser",  // https://en.wiktionary.org/wiki/monopoliser
 	"subscripting", // https://github.com/client9/misspell-source-data/issues/6
 	"unprojected",  // https://en.wiktionary.org/wiki/unprojected
 	"updaters",

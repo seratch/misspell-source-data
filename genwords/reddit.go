@@ -1908,7 +1908,6 @@ automatice->automate
 automatico->automation
 automatied->automate
 automatiek->automate
-automatise->automate
 automato->automation
 automatonic->automation
 automatron->automation
@@ -11895,7 +11894,6 @@ installion->installing
 installling->installing
 installmant->installment
 installus->installs
-instals->installs
 instanse->instances
 instantaenous->instantaneous
 instantaneos->instantaneous
@@ -12177,7 +12175,6 @@ internationnally->internationally
 internations->interactions
 internediate->intermediate
 internelized->internalized
-internes->internets
 internest->internets
 internetbs->internets
 interneters->internets
@@ -14609,7 +14606,6 @@ monopolets->monopolies
 monopolice->monopolies
 monopolios->monopolies
 monopolis->monopolies
-monopoliser->monopolies
 monopollies->monopolies
 monopolly->monopoly
 monopoloy->monopoly
