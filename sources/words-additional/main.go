@@ -17,6 +17,7 @@ import (
 )
 
 var words = []string{
+	"drinkeries",   // slang for bar
 	"instal",       // acceptable UK spelling?
 	"instals",      // acceptable UK spelling?
 	"internes",     // not in wikitionary 2016-09-01, but in apple dictionary
