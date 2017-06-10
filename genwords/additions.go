@@ -2,12 +2,12 @@ package main
 
 func dictAdditions() map[string]string {
 	dict := parseWikipediaFormat(additions)
-	dict = expandCase(dict)
 	return dict
 }
 
 // arent
 var additions = `
+memoery->memory
 deinitalization->deinitialization
 deinitalize->deinitialize
 deinitalized->deinitialized
