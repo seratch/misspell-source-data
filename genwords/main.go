@@ -7,8 +7,6 @@ import (
 	"os"
 	"sort"
 	"strings"
-
-	"github.com/client9/misspell"
 )
 
 func addOrPanic(dict map[string]string, key, value string) {
@@ -40,31 +38,11 @@ func mergeDict(a, b map[string]string) {
 	}
 }
 
-func removeCase(inmap map[string]string, word string) {
-	style := misspell.CaseStyle(word)
-	kcase := misspell.CaseVariations(word, style)
-	for i := 0; i < len(kcase); i++ {
-		delete(inmap, kcase[i])
-	}
-}
-func expandCase(inmap map[string]string) map[string]string {
-	out := make(map[string]string, len(inmap)*3)
-	for k, v := range inmap {
-		style := misspell.CaseStyle(k)
-		kcase := misspell.CaseVariations(k, style)
-		vcase := misspell.CaseVariations(v, style)
-		for i := 0; i < len(kcase); i++ {
-			addOrPanic(out, kcase[i], vcase[i])
-		}
-	}
-	return out
-}
-
 func parseWikipediaFormat(text string) map[string]string {
 	lines := strings.Split(strings.TrimSpace(text), "\n")
 	dict := make(map[string]string, len(lines))
 	for _, line := range lines {
-		line = strings.TrimSpace(line)
+		line = strings.ToLower(strings.TrimSpace(line))
 		parts := strings.Split(line, "->")
 		if len(parts) != 2 {
 			log.Fatalf(fmt.Sprintf("failed parsing %q", line))
@@ -96,6 +74,12 @@ func main() {
 	}
 	defer fo.Close()
 	fo.WriteString("package misspell\n\n")
+
+	// standard for machine generated files
+	// https://github.com/golang/go/issues/13560
+	// https://godoc.org/github.com/shurcooL/go/generated
+	// `^// Code generated .* DO NOT EDIT\.$`
+	fo.WriteString("// Code generated automatically.  DO NOT EDIT.\n\n")
 
 	// create main word list
 	dict := make(map[string]string)

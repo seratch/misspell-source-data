@@ -2,7 +2,6 @@ package main
 
 func dictReddit() map[string]string {
 	dict := parseWikipediaFormat(additionsReddit)
-	dict = expandCase(dict)
 	return dict
 }
 
@@ -7642,7 +7641,6 @@ dribbel->dribble
 driectx->directx
 drifitng->drifting
 driftig->drifting
-drinkeries->drinkers
 drinkes->drinkers
 driveris->drivers
 drotmund->dortmund
@@ -13999,7 +13997,7 @@ meltodwn->meltdown
 membrance->membrane
 membrances->membrane
 memerization->memorization
-memorie->memorize
+memorie->memory
 memoriez->memorize
 memorizacion->memorization
 memorozation->memorization

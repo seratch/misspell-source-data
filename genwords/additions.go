@@ -7,7 +7,12 @@ func dictAdditions() map[string]string {
 
 // arent
 var additions = `
+satisy->satisfy
+suport->support
+properies->properties
+instanciate->instantiate
 memoery->memory
+memorie->memory
 deinitalization->deinitialization
 deinitalize->deinitialize
 deinitalized->deinitialized

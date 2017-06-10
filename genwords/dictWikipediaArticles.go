@@ -2,7 +2,6 @@ package main
 
 func dictWikipediaArticles() map[string]string {
 	dict := parseWikipediaFormat(additionsWikipediaArticles)
-	dict = expandCase(dict)
 	return dict
 }
 

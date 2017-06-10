@@ -1,5 +1,9 @@
 package main
 
+import (
+	"strings"
+)
+
 // dictBritish inverts the basic American word list
 //  and then makes additional corrections
 //
@@ -12,13 +16,12 @@ func dictBritish() map[string]string {
 		dict[v] = k
 	}
 
-	needCaseDelete := []string{
-		"Anglicize",
-		"Caroling",
-		"Savior",
-	}
-
 	needDelete := []string{
+		"honorable",
+		"caroling",
+		"savior",
+		"fetal",
+		"anglicize",
 		"install",
 		"installs",
 		"instal",
@@ -176,25 +179,18 @@ func dictBritish() map[string]string {
 		delete(dict, word)
 	}
 
-	dict = expandCase(dict)
-
-	for _, word := range needCaseDelete {
-		removeCase(dict, word)
-	}
-
 	return dict
 }
 
 func dictAmerican() map[string]string {
-	needCaseDelete := []string{
+	needDelete := []string{
 		"Armour",
 		"Bannister",
 		"Louvre",
 	}
 	dict := parseWikipediaFormat(american)
-	dict = expandCase(dict)
-	for _, word := range needCaseDelete {
-		removeCase(dict, word)
+	for _, word := range needDelete {
+		delete(dict, strings.ToLower(word))
 	}
 
 	return dict

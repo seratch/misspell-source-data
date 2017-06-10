@@ -19,9 +19,9 @@ func dictWikipedia() map[string]string {
 	delete(dict, "knifes")
 	delete(dict, "humer")
 	delete(dict, "convertor")
-	delete(dict, "Capetown")
+	delete(dict, "capetown")
 	delete(dict, "diaster")
-	delete(dict, "Muhammadan")
+	delete(dict, "muhammadan")
 	delete(dict, "slippy")
 	delete(dict, "specif")     // abbreviation
 	delete(dict, "florescent") // a word: https://en.wiktionary.org/wiki/florescent
@@ -37,9 +37,9 @@ func dictWikipedia() map[string]string {
 	delete(dict, "miliary")
 	delete(dict, "nickle")
 	delete(dict, "lightyear")
-	delete(dict, "Sionist")
-	delete(dict, "Sionists")
-	delete(dict, "Foundland")
+	delete(dict, "sionist")
+	delete(dict, "sionists")
+	delete(dict, "foundland")
 	delete(dict, "holliday") // surname
 	// Corrections
 	delete(dict, "fiel")
@@ -53,7 +53,7 @@ func dictWikipedia() map[string]string {
 		"mear",   // too small
 		"larg",   // too small, similar to "L-arg"
 		"dum",    // too small
-		"Malcom", // https://en.wikipedia.org/wiki/Malcom_McLean
+		"malcom", // https://en.wikipedia.org/wiki/Malcom_McLean
 		"toke",
 		"moil",
 		"lsat",
@@ -120,24 +120,23 @@ func dictWikipedia() map[string]string {
 	}
 
 	for _, word := range needDelete {
-		delete(dict, word)
+		delete(dict, strings.ToLower(word))
 	}
 
 	// delete any contractions
 	for wrong, right := range dict {
 		if strings.Contains(wrong, "'") || strings.Contains(right, "'") {
-			delete(dict, wrong)
+			delete(dict, strings.ToLower(wrong))
 		}
 	}
 
 	// delete any multi word corrections
 	for wrong, right := range dict {
 		if strings.Contains(right, " ") {
-			delete(dict, wrong)
+			delete(dict, strings.ToLower(wrong))
 		}
 	}
 
-	dict = expandCase(dict)
 	return dict
 }
 
