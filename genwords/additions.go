@@ -215,6 +215,7 @@ implemention->implementation
 implentation->implementation
 implicitely->implicitly
 implimenation->implementation
+inbetween->in-between
 incldue->include
 incorect->incorrect
 incorectly->incorrectly
@@ -258,6 +259,7 @@ singals->signals
 specifcally->specifically
 specifed->specified
 specifiy->specify
+statisics->statistics
 straitforward->straightforward
 subsequant->subsequent
 successfuly->successfully
